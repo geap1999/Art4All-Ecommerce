@@ -1,0 +1,49 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    container_name: app_db
+    restart: always
+    volumes:
+      - ./db_scripts:/docker-entrypoint-initdb.d/init.sql 
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 10
+      start_period: 30s
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: "app"
+      MYSQL_USER: "admin"
+      MYSQL_PASSWORD: "adminpass"
+    ports:
+      - "3306:3306"
+
+  backend:
+    build: 
+      context: ./buyDrawingApp
+      dockerfile: Dockerfile
+    container_name: ecommerce_backend
+    restart: always
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+      build: 
+        context: ./Front_end
+        dockerfile: Dockerfile
+      container_name: ecommerce_frontend
+      restart: always
+      volumes:
+        - ./frontend:/app
+      command: ["npm", "run", "dev"]
+      ports:
+        - "5173:5173"
+      depends_on:
+        - backend
