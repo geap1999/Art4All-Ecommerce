@@ -5,7 +5,7 @@ Ecommerce for selling drawings. Made with python using the django framework and 
 ![alt text](https://res.cloudinary.com/dafiqfkwf/image/upload/v1718973588/Capture_d_%C3%A9cran_2024-06-21_143908_powmrj.png)
 
 ## --- Modèle Logique des Données ---
-![alt text](https://res.cloudinary.com/dafiqfkwf/image/upload/v1718873787/Capture_d_%C3%A9cran_2024-06-20_105624_e2vr2v.png)
+![alt text](https://res.cloudinary.com/dafiqfkwf/image/upload/v1719234803/Capture_d_%C3%A9cran_2024-06-24_151312_nxpji4.png)
 
 INSTRUCTIONS
 1) Install VSCode
